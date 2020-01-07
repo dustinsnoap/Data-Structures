@@ -75,25 +75,59 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if not node: return
+        self.in_order_print(node.left)
+        print(node.value)
+        self.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        if not node: return
+        #initialize a queue
+        queue = Queue()
+        #add node to queue
+        queue.enqueue(node)
+        #while the queue isn't empty
+        while queue.len() > 0:
+            #grab and remove the top  node in the queue
+            node = queue.dequeue()
+            #print the node
+            print(node.value)
+            #add the nodes children to the queue
+            if node.left:
+                queue.enqueue(node.left)
+            if node.right:
+                queue.enqueue(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+    #! it's asking for preorder traversal
     def dft_print(self, node):
-        pass
+        if not node: return
+        #print current node
+        print(node.value)
+        #travel down the left subtree
+        if node.left: self.dft_print(node.left)
+        #travel down the right subtree
+        if node.right: self.dft_print(node.right)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
 
     # Print In-order recursive DFT
     def pre_order_dft(self, node):
-        pass
+        if not node: return
+        print(node.value)
+        if node.left: self.pre_order_dft(node.left)
+        if node.right: self.pre_order_dft(node.right)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        if not node: return
+        #travel down the left subtree
+        if node.left: self.post_order_dft(node.left)
+        #travel down the right subtree
+        if node.right: self.post_order_dft(node.right)
+        #print current node
+        print(node.value)
